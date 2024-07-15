@@ -1,0 +1,460 @@
+definitions:
+  http.ErrorResponse:
+    properties:
+      message:
+        type: string
+    type: object
+  http.StatusResponse:
+    properties:
+      status:
+        type: string
+    type: object
+  input.NewUser:
+    properties:
+      passportNumber:
+        type: string
+    required:
+    - passportNumber
+    type: object
+  input.UpdateUser:
+    properties:
+      address:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      passport_number:
+        type: string
+      patronymic:
+        type: string
+      surname:
+        type: string
+    required:
+    - id
+    type: object
+info:
+  contact: {}
+  description: API Server for time tracker Application
+  title: Go Time Tracker API
+  version: "1.0"
+paths:
+  /api/v1/tracker/get-user-costs-by-period:
+    get:
+      consumes:
+      - application/json
+      description: get user costs by period
+      operationId: get-user-costs
+      parameters:
+      - description: userId
+        in: query
+        name: userId
+        required: true
+        type: integer
+      - description: start
+        in: query
+        name: start
+        required: true
+        type: string
+      - description: end
+        in: query
+        name: end
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/http.StatusResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/http.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/http.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/http.ErrorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/http.ErrorResponse'
+      summary: Get user costs
+      tags:
+      - tracker
+  /api/v1/tracker/start:
+    post:
+      consumes:
+      - application/json
+      description: start timer
+      operationId: start
+      parameters:
+      - description: userId
+        in: query
+        name: userId
+        required: true
+        type: integer
+      - description: taskId
+        in: query
+        name: taskId
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/http.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/http.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/http.ErrorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/http.ErrorResponse'
+      summary: Start
+      tags:
+      - tracker
+  /api/v1/tracker/stop:
+    put:
+      consumes:
+      - application/json
+      description: stop timer
+      operationId: stop
+      parameters:
+      - description: userId
+        in: query
+        name: userId
+        required: true
+        type: integer
+      - description: taskId
+        in: query
+        name: taskId
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/http.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/http.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/http.ErrorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/http.ErrorResponse'
+      summary: Stop
+      tags:
+      - tracker
+  /api/v1/users/create:
+    post:
+      consumes:
+      - application/json
+      description: create user
+      operationId: create-account
+      parameters:
+      - description: passport info
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/input.NewUser'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/http.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/http.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/http.ErrorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/http.ErrorResponse'
+      summary: Create user
+      tags:
+      - users
+  /api/v1/users/delete:
+    delete:
+      description: delete user by id
+      operationId: delete-user-by-id
+      parameters:
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/http.StatusResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/http.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/http.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/http.ErrorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/http.ErrorResponse'
+      summary: Delete user
+      tags:
+      - users
+  /api/v1/users/get:
+    get:
+      description: get user by id
+      operationId: get-user-by-id
+      parameters:
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/http.StatusResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/http.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/http.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/http.ErrorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/http.ErrorResponse'
+      summary: Get user
+      tags:
+      - users
+  /api/v1/users/get-by-filter:
+    get:
+      description: get user by filter
+      operationId: get-user-by-filter
+      parameters:
+      - description: id
+        in: query
+        name: id
+        type: integer
+      - description: createdAt
+        in: query
+        name: createdAt
+        type: string
+      - description: updatedAt
+        in: query
+        name: updatedAt
+        type: string
+      - description: passport
+        in: query
+        name: passport
+        type: string
+      - description: surname
+        in: query
+        name: surname
+        type: string
+      - description: name
+        in: query
+        name: name
+        type: string
+      - description: patronymic
+        in: query
+        name: patronymic
+        type: string
+      - description: address
+        in: query
+        name: address
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/http.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/http.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/http.ErrorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/http.ErrorResponse'
+      summary: Get users
+      tags:
+      - users
+  /api/v1/users/get-by-filter-paged:
+    get:
+      description: get user by filter paged
+      operationId: get-user-by-filter-paged
+      parameters:
+      - description: size
+        in: query
+        name: size
+        type: integer
+      - description: number
+        in: query
+        name: number
+        type: integer
+      - description: id
+        in: query
+        name: id
+        type: integer
+      - description: createdAt
+        in: query
+        name: createdAt
+        type: string
+      - description: updatedAt
+        in: query
+        name: updatedAt
+        type: string
+      - description: passport
+        in: query
+        name: passport
+        type: string
+      - description: surname
+        in: query
+        name: surname
+        type: string
+      - description: name
+        in: query
+        name: name
+        type: string
+      - description: patronymic
+        in: query
+        name: patronymic
+        type: string
+      - description: address
+        in: query
+        name: address
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/http.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/http.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/http.ErrorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/http.ErrorResponse'
+      summary: Get users paged
+      tags:
+      - users
+  /api/v1/users/update:
+    put:
+      consumes:
+      - application/json
+      description: update user
+      operationId: update-user
+      parameters:
+      - description: user info
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/input.UpdateUser'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/http.StatusResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/http.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/http.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/http.ErrorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/http.ErrorResponse'
+      summary: Update user
+      tags:
+      - users
+swagger: "2.0"
