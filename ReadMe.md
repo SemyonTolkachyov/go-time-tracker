@@ -19,16 +19,16 @@
 **Эндпоинты**
 
 
-GET /swagger/*any  - *свагер*
-POST /api/v1/users/create - *создание пользователя*
-GET /api/v1/users/get - *получение пользователя*
-PUT /api/v1/users/update - *обновление пользователя*
-DELETE /api/v1/users/delete - *удаление пользователя (используется мягкое удаление)*
-GET /api/v1/users/get-by-filter - *получение пользователей по фильтру*
-GET /api/v1/users/get-by-filter-paged - *получение страницы с пользователями по фильтру*
-GET /api/v1/tracker/get-user-costs-by-period - *получение затрат по задачам за период*
-POST /api/v1/tracker/start - *начать отсчет по задаче*
-PUT /api/v1/tracker/stop - *завершить отсчет по задаче*
+ - GET /swagger/*any  - *свагер*
+ - POST /api/v1/users/create - *создание пользователя*
+ - GET /api/v1/users/get - *получение пользователя*
+ - PUT /api/v1/users/update - *обновление пользователя*
+ - DELETE /api/v1/users/delete - *удаление пользователя (используется мягкое удаление)*
+ - GET /api/v1/users/get-by-filter - *получение пользователей по фильтру*
+ - GET /api/v1/users/get-by-filter-paged - *получение страницы с пользователями по фильтру*
+ - GET /api/v1/tracker/get-user-costs-by-period - *получение затрат по задачам за период*
+ - POST /api/v1/tracker/start - *начать отсчет по задаче*
+ - PUT /api/v1/tracker/stop - *завершить отсчет по задаче*
 
 Более подробная информация доступна в свагере
 
