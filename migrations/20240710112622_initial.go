@@ -14,19 +14,21 @@ func upInitial(ctx context.Context, tx *sql.Tx) error {
 	// This code is executed when the migration is applied.
 	_, err := tx.Exec(`CREATE TABLE users
 	(
-	    id            	serial not null unique,
+	    id            	serial constraint users_pk
+            primary key,
 	    created_at    	timestamptz not null,
 	    updated_at    	timestamptz,
 	    deleted_at    	timestamptz,
 	    passport_number varchar(15) not null unique,
 	    surname      	varchar(255) not null,
 	    name          	varchar(255) not null,
-	    patronymic      varchar(255) not null,
+	    patronymic      varchar(255),
 	    address         varchar(255) not null
 	);
 	CREATE TABLE tasks
 	(
-	    id            	serial not null unique,
+	    id            	serial constraint tasks_pk
+            primary key,
 	    created_at    	timestamptz not null,
 	    updated_at    	timestamptz,
 	    deleted_at    	timestamptz,
@@ -35,7 +37,8 @@ func upInitial(ctx context.Context, tx *sql.Tx) error {
 	);
 	CREATE TABLE time_costs
 	(
-	    id            	serial not null unique,
+	    id            	serial constraint time_costs_pk
+            primary key,
 	    created_at    	timestamptz not null,
 	    updated_at    	timestamptz,
 	    deleted_at    	timestamptz,

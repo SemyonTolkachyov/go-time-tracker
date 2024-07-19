@@ -63,7 +63,7 @@ func (a *App) initPgDb(cfg config.SQLConfig) error {
 		return err
 	}
 	defer db.Close()
-	q := fmt.Sprintf(`CREATE DATABASE %s`, dbName)
+	q := fmt.Sprintf(`CREATE DATABASE "%s"`, dbName)
 	_, err = db.Exec(q)
 	return err
 }

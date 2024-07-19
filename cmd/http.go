@@ -26,22 +26,4 @@ func main() {
 		log.Error(err.Error())
 		return
 	}
-	//mux := http.NewServeMux()
-	//mux.HandleFunc("/info", func(writer http.ResponseWriter, request *http.Request) {
-	//	q := request.URL.Query()
-	//	ps := q.Get("passportNumber")
-	//	pn := q.Get("passportSerie")
-	//	/*res := UserInfo{
-	//		Name:       ps,
-	//		Surname:    pn,
-	//		Patronymic: pn + " patronymic",
-	//		Address:    request.URL.String(),
-	//	}*/
-	//	writer.Header().Set("Content-Type", "application/json")
-	//	writer.WriteHeader(http.StatusOK)
-	//	json.NewEncoder(writer).Encode(ps + pn)
-	//	//fmt.Fprintf(writer, res)
-	//})
-	//log.Println("Listen serve success")
-	//http.ListenAndServe(":8080", mux)
 }

@@ -1,7 +1,6 @@
 package app
 
 import (
-	"database/sql"
 	"errors"
 	"github.com/jmoiron/sqlx"
 	log "github.com/sirupsen/logrus"
@@ -16,7 +15,6 @@ type App struct {
 	c     *Container
 	cOnce *sync.Once
 
-	mysql  *sql.DB
 	pgsqlx *sqlx.DB
 	http   *http.Client
 }

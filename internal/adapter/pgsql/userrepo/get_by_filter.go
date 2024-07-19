@@ -16,7 +16,19 @@ func (r Repository) GetByFilter(ctx context.Context, filter filter.User) (*[]ent
 	var users []entity.User
 	filterStatement, args := r.getWhereStatementByFilter(filter, 1)
 
-	selectStatement := fmt.Sprintf("SELECT * FROM %s ", names.UsersTable)
+	selectStatement := fmt.Sprintf(
+		"SELECT %s, %s, %s, %s, %s, %s, %s, %s, %s FROM %s ",
+		names.UserColId,
+		names.UserColCreatedAt,
+		names.UserColUpdatedAt,
+		names.UserColDeletedAt,
+		names.UserColPassportNumber,
+		names.UserColName,
+		names.UserColSurname,
+		names.UserColPatronymic,
+		names.UserColAddress,
+		names.UsersTable,
+	)
 
 	whereStatement := fmt.Sprintf("WHERE %s ", getDefaultFilter())
 	if len(args) > 0 {
