@@ -1,29 +1,20 @@
-package main
+package cmd
 
 import (
 	log "github.com/sirupsen/logrus"
 	"go-time-tracker/internal/app"
 )
 
-// @title Go Time Tracker API
-// @version 1.0
-// @description API Server for time tracker Application
-
-func main() {
-	err := app.InitApp()
-	if err != nil {
-		log.Error(err)
-		return
-	}
-	log.Info("App initialized")
+func RunHTTP() error {
 	globalApp, err := app.GetGlobalApp()
 	if err != nil {
 		log.Error(err.Error())
-		return
+		return err
 	}
 	err = globalApp.StartHTTPServer()
 	if err != nil {
 		log.Error(err.Error())
-		return
+		return err
 	}
+	return nil
 }
